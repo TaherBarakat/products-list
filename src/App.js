@@ -28,11 +28,17 @@ class App extends Component {
           items.push(item);
           this.setState({ items: items });
      };
-     increaseItem = (item) => {
-          console.log("+", item);
+     increaseItem = (id) => {
+          let items = this.state.items;
+          let i = items.findIndex((item) => item.id === id);
+          items[i].quantity += 1;
+          this.setState([...items]);
      };
-     decreaseItem = (item) => {
-          console.log("-", item);
+     decreaseItem = (id) => {
+          let items = this.state.items;
+          let i = items.findIndex((item) => item.id === id);
+          if (items[i].quantity !== 1) items[i].quantity -= 1;
+          this.setState([...items]);
      };
      render() {
           return (
